@@ -12,7 +12,7 @@
         "doctrine/orm": ">=2.4",
         "doctrine/doctrine-bundle": "1.2.*",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "1.0.*",
         "elao/web-profiler-extra-bundle": "dev-master",
         "jms/debugging-bundle": "dev-master",
         "raulfraile/ladybug-bundle": "v0.7",
