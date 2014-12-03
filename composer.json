@@ -8,26 +8,33 @@
     },
     "require": {
         "php": ">=5.4.1",
-        "symfony/symfony": "~2.4",
-        "doctrine/orm": ">=2.4",
-        "doctrine/doctrine-bundle": "1.2.*",
+
+        "symfony/symfony": "2.5.x",
+        "symfony/assetic-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+
+        "sensio/distribution-bundle": "~2.3",
+        "sensio/framework-extra-bundle": "~3.0",
+        "sensio/generator-bundle": "~2.3",
+
+        "twig/extensions": "~1.0",
+
+        "doctrine/orm": "~2.4",
+        "doctrine/doctrine-bundle": "~1.2",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "doctrine/doctrine-migrations-bundle": "1.0.*",
+        "doctrine/migrations": "1.0.*@dev",
+        "doctrine/doctrine-migrations-bundle": "2.1.*@dev",
+
         "elao/web-profiler-extra-bundle": "dev-master",
-        "jms/debugging-bundle": "dev-master",
-        "raulfraile/ladybug-bundle": "v0.7",
-        "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.3.*",
-        "symfony/swiftmailer-bundle": "2.3.*",
-        "symfony/monolog-bundle": "2.4.*",
-        "sensio/distribution-bundle": "2.3.*",
-        "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
-        "smart-core/html-bundle": "dev-master"
+        "jms/debugging-bundle": "dev-master",
+        "raulfraile/ladybug-bundle": "v0.7"
     },
     "scripts": {
         "post-install-cmd": [
             "sh bin/init_var",
+            "sh bin/clear_cache",
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
@@ -36,6 +43,7 @@
         ],
         "post-update-cmd": [
             "sh bin/init_var",
+            "sh bin/clear_cache",
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
@@ -50,8 +58,9 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
+        "symfony-assets-install": "symlink",
         "branch-alias": {
-            "dev-master": "2.4-dev"
+            "dev-master": "2.5-dev"
         },
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
