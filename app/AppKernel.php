@@ -18,7 +18,7 @@ class AppKernel extends Kernel
             //new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(), "sensio/framework-extra-bundle": "2.2.*",
             //new JMS\AopBundle\JMSAopBundle(),
             //new JMS\DiExtraBundle\JMSDiExtraBundle($this), "jms/di-extra-bundle": "1.3.*"
-            //new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(), "jms/security-extra-bundle": "1.4.*",
+            //new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(), "jms/security-extra-bundle": "~1.0",
             new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
         );
 
