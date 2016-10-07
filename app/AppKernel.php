@@ -3,6 +3,8 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
+require_once 'autoload.php';
+
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -20,6 +22,7 @@ class AppKernel extends Kernel
             //new JMS\DiExtraBundle\JMSDiExtraBundle($this), "jms/di-extra-bundle": "1.3.*"
             //new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(), "jms/security-extra-bundle": "~1.0",
             new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
+            new SmartCore\Bundle\AcceleratorCacheBundle\AcceleratorCacheBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -29,7 +32,6 @@ class AppKernel extends Kernel
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle();
             $bundles[] = new Elao\WebProfilerExtraBundle\WebProfilerExtraBundle();
-            $bundles[] = new JMS\DebuggingBundle\JMSDebuggingBundle($this); //"jms/debugging-bundle": "dev-master",
         }
 
         return $bundles;
@@ -38,15 +40,6 @@ class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
-    }
-
-    protected function getContainerBaseClass()
-    {
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            return '\JMS\DebuggingBundle\DependencyInjection\TraceableContainer';
-        }
-
-        return parent::getContainerBaseClass();
     }
 
     public function getCacheDir()

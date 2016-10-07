@@ -1,7 +1,4 @@
-/app/bootstrap.php.cache
 /app/config/parameters.yml
-/app/check.php
-/app/SymfonyRequirements.php
 /bin/doctrine*
 /bin/phpspec*
 /var/

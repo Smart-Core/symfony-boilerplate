@@ -63,3 +63,8 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+accelerator_cache:
+    host: "%base_url%"
+    web_dir: "%web_dir%" # %kernel.root_dir%/../web
+    mode: curl

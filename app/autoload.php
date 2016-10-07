@@ -11,7 +11,7 @@ if (version_compare(PHP_VERSION, '5.4', '>=') && gc_enabled()) {
 $loader = require __DIR__.'/../vendor/autoload.php';
 
 // Autodetect autoloader cacheing.
-if (function_exists('apc_store') and ini_get('apc.enabled')) {
+if (function_exists('apcu_fetch') and ini_get('apc.enabled')) {
     $loader = new \Symfony\Component\ClassLoader\ApcClassLoader(md5(__FILE__), $loader);
     $loader->register(true);
 } else if (function_exists('wincache_ucache_set')) {
