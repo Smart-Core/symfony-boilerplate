@@ -2,9 +2,10 @@
     "name": "smart-core/symfony-boilerplate",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "The \"Symfony Standard Edition\" distribution by Smart Core web solutions",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-4": { "": "src/" },
+        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "require": {
         "php": ">=5.5.9",
@@ -31,23 +32,28 @@
         "smart-core/ladybug-bundle": "~0.7"
     },
     "scripts": {
-        "post-install-cmd": [
+        "init-scripts": [
             "sh bin/init_var",
-            "sh bin/clear_cache",
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "sh bin/clear_cache"
+        ],
+        "smart-core-scripts": [
             "SmartCore\\Bundle\\AcceleratorCacheBundle\\Composer\\ScriptHandler::clearCache"
         ],
-        "post-update-cmd": [
-            "sh bin/init_var",
-            "sh bin/clear_cache",
+        "symfony-scripts": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "SmartCore\\Bundle\\AcceleratorCacheBundle\\Composer\\ScriptHandler::clearCache"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-install-cmd": [
+            "@init-scripts",
+            "@symfony-scripts",
+            "@smart-core-scripts"
+        ],
+        "post-update-cmd": [
+            "@init-scripts",
+            "@symfony-scripts",
+            "@smart-core-scripts"
         ]
     },
     "config": {
@@ -60,6 +66,7 @@
         "symfony-bin-dir": "bin",
         "symfony-var-dir": "var",
         "symfony-web-dir": "web",
+        "symfony-tests-dir": "tests",
         "symfony-assets-install": "symlink",
         "branch-alias": {
             "dev-master": "3.1-dev"
