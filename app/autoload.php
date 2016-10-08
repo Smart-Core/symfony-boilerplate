@@ -1,13 +1,9 @@
 <?php
-if (version_compare(PHP_VERSION, '5.4', '>=') && gc_enabled()) {
-    // Disabling Zend Garbage Collection to prevent segfaults with PHP5.4+
-    // https://bugs.php.net/bug.php?id=53976
-    gc_disable();
-}
 
-/**
- * @var $loader \Composer\Autoload\ClassLoader
- */
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Composer\Autoload\ClassLoader;
+
+/** @var ClassLoader $loader */
 $loader = require __DIR__.'/../vendor/autoload.php';
 
 // Autodetect autoloader cacheing.
@@ -24,11 +20,6 @@ if (function_exists('apcu_fetch') and ini_get('apc.enabled')) {
     $loader->register(true);
 }
 
-// intl
-if (!function_exists('intl_get_error_code')) {
-    require_once __DIR__.'/../vendor/symfony/symfony/src/Symfony/Component/Intl/Resources/stubs/functions.php';
-}
-
-\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader([$loader, 'loadClass']);
+AnnotationRegistry::registerLoader([$loader, 'loadClass']);
 
 return $loader;
