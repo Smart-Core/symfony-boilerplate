@@ -19,4 +19,4 @@ fi
 
 # update files permissions
 chmod -R 0777 $DIR
-chmod 777 app/console
+chmod 777 bin/console
